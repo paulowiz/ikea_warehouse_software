@@ -29,6 +29,7 @@ services:
     volumes:
       - .:/api
     environment:
+      - POSTGRES_HOST=db
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
       - POSTGRES_DATABASE=postgres

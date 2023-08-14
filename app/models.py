@@ -40,4 +40,5 @@ class ProductDetail(Base):
     product_detail_product = relationship("Product", back_populates="product_product_detail")
     product_detail_article = relationship("Article", back_populates="article_product_detail")
 
+
 Base.metadata.create_all(bind=engine)
