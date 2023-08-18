@@ -23,11 +23,9 @@ Install the required dependencies by running:
   
 1. Clone this repository  
   
-2. Setup inside the `docker-compose.yml` the variable `LOCAL_RUN=1` if you are running in your computer. I recommend `LOCAL_RUN=0` just on server with more resources (CPU and Memory RAM)
-  
-3. Run docker compose `docker-compose up -d --build` (be sure if your ports 8000 and 5433 are available)
+2. Run docker compose `docker-compose up -d --build` (be sure if your ports 8000 and 5433 are available)
 
-4. Check the API running here http://localhost:8000/docs and try it out the endpoint.
+3. Check the API running here http://localhost:8000/docs and try it out the endpoint.
 
 <br />  
   
