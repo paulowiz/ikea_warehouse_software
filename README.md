@@ -34,7 +34,8 @@ Install the required dependencies by running:
 ## 📚 Project Files Overview
 - app
   - routes
-    - `inventory.py`: inventory route with the endpoints. 
+    - `article.py`: article route with the endpoints. 
+    - `product.py`: product route with the endpoints. 
   - `main.py`: main file to run the API service and swagger.
   - `models.py`: ORM Table Mapping.
   - `database.py`: Database connection.
