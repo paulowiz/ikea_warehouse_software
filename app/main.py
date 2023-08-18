@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
-from app.routers import inventory
+from app.routers import product, article
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -15,7 +15,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(inventory.router)
+app.include_router(article.router)
+app.include_router(product.router)
 
 
 def custom_openapi():
