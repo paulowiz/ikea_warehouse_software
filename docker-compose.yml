@@ -1,0 +1,39 @@
+version: "1"
+services:
+  db:
+    image: postgres:14
+    ports:
+      - "5433"
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_SERVER=db
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=app
+  web:
+    build:
+      dockerfile: Dockerfile
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '2'
+          memory: 3G
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    command: bash -c "uvicorn app.main:app --host  0.0.0.0 --port 8000"
+    volumes:
+      - .:/api
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DATABASE=postgres
+      - OUTPUT_FOLDER=data
+      - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:8000"]
+volumes:
+  app-db-data:
