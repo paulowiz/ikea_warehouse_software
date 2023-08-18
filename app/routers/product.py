@@ -105,3 +105,21 @@ async def read_product_detail(product_id: int,
         product_json['product_article_detail'] = []
 
     return product_json
+
+
+@router.post("/sell/{product_id}")
+async def sell_product_by_id(product_id: int,
+                              db: Session = Depends(get_db)):
+    product_detail_model = db.query(models.ProductDetail) \
+        .filter(models.ProductDetail.product_id == product_id) \
+        .all()
+
+    for row in product_detail_model:
+        product_detail_model = db.query(models.Article) \
+            .filter(models.Article.id == row.article_id) \
+            .first()
+        product_detail_model.stock = int(product_detail_model.stock) - int(row.amount_of)
+        db.add(product_detail_model)
+        db.commit()
+
+    return {"message": "Product Sold Successfully."}
